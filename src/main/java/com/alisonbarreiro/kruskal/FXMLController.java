@@ -12,6 +12,10 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 
 public class FXMLController implements Initializable {
@@ -24,9 +28,18 @@ public class FXMLController implements Initializable {
     private String nome;
     private int NUM_NODES;
 
-    private boolean SELECT_HEAPSORT = false;
+    private boolean SELECT_HEAPSORT = true;
     private boolean SELECT_CountingSort = false;
 
+     @FXML
+    private LineChart<?, ?> LineCart;
+
+    @FXML
+    private CategoryAxis x;
+
+    @FXML
+    private NumberAxis y;
+    
     @FXML
     private Label label;
 
@@ -34,9 +47,9 @@ public class FXMLController implements Initializable {
     private void handleButtonAction(ActionEvent event) {
         //System.out.println("You clicked me!");
         //label.setText("Hello World!");
-        addInstance("src/main/resources/instances-Kruskal/n1500C.txt");
+        addInstance("src/main/resources/instances-Kruskal/n1500A.txt");
         long inicio = System.currentTimeMillis();
-        for(int i = 0; i < 10;i++){
+        for(int i = 0; i < 1;i++){
             GrafoKruskal g = new GrafoKruskal();
              g.main(); 
         }
@@ -162,7 +175,16 @@ public class FXMLController implements Initializable {
                 // Caso contrário, descarte a  next_edge 
             }
 
-         
+            System.out.println("Following are the edges in "
+                    + "the constructed MST");
+            XYChart.Series series = new XYChart.Series();
+            for (i = 0; i < e; ++i) {
+                series.getData().add(new XYChart.Data(""+result[i].saida,result[i].destino));
+                System.out.println(result[i].saida + " -- "
+                        + result[i].destino + " == " + result[i].peso);
+            }
+            
+            LineCart.getData().addAll(series);
             
         }
 
