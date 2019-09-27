@@ -11,10 +11,10 @@ package Model;
  */
 public class Nodo {
     private int id;
-    private int x;
-    private int y;
+    private float x;
+    private float y;
 
-    public Nodo(int id, int x, int y) {
+    public Nodo(int id, float x, float y) {
         this.id = id;
         this.x = x;
         this.y = y;
@@ -28,21 +28,23 @@ public class Nodo {
         this.id = id;
     }
 
-    public int getX() {
+    public float getX() {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(float x) {
         this.x = x;
     }
 
-    public int getY() {
+    public float getY() {
         return y;
     }
 
-    public void setY(int y) {
+    public void setY(float y) {
         this.y = y;
     }
+
+  
     
     
     
